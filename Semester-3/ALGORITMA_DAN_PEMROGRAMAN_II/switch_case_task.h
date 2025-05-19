@@ -1,0 +1,14 @@
+//
+// Created by Rafli on 21/09/24.
+//
+
+#ifndef ALGORITMA_DAN_PEMROGRAMAN_II_SWITCH_CASE_TASK_H
+#define ALGORITMA_DAN_PEMROGRAMAN_II_SWITCH_CASE_TASK_H
+
+
+class switch_case_task {
+
+};
+
+
+#endif //ALGORITMA_DAN_PEMROGRAMAN_II_SWITCH_CASE_TASK_H

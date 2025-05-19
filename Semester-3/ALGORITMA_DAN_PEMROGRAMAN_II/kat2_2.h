@@ -1,0 +1,14 @@
+//
+// Created by Rafli on 21/09/24.
+//
+
+#ifndef ALGORITMA_DAN_PEMROGRAMAN_II_KAT2_2_H
+#define ALGORITMA_DAN_PEMROGRAMAN_II_KAT2_2_H
+
+
+class kat2_2 {
+
+};
+
+
+#endif //ALGORITMA_DAN_PEMROGRAMAN_II_KAT2_2_H

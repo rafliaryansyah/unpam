@@ -1,0 +1,14 @@
+//
+// Created by Rafli on 21/09/24.
+//
+
+#ifndef ALGORITMA_DAN_PEMROGRAMAN_II_TUGAS_AKHIR_H
+#define ALGORITMA_DAN_PEMROGRAMAN_II_TUGAS_AKHIR_H
+
+
+class tugas_akhir {
+
+};
+
+
+#endif //ALGORITMA_DAN_PEMROGRAMAN_II_TUGAS_AKHIR_H
