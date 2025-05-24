@@ -1,0 +1,1 @@
+## Melakukan Pembuatan/Registrasi Akun di GCP
