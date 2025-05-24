@@ -11,3 +11,7 @@ CREATE TABLE users (
 INSERT INTO users (username, password) VALUES
 ('admin', 'admin'),
 ('user1', 'user1'),
+
+ALTER TABLE users ADD hak_akses enum('Admin', 'User') NULL AFTER `password`;
+
+INSERT INTO users (username, password, hak_akses) VALUES ('rafli', 'password', 'Admin')
