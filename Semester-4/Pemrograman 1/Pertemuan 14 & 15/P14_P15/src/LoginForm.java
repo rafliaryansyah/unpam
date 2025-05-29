@@ -1,3 +1,11 @@
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -29,28 +37,27 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Username");
 
-        jTextField1.setText("jTextField1");
-
         jLabel2.setText("Password");
 
-        jTextField2.setText("jTextField2");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("jButton1");
+        jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox1.setText("Show Password");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
             }
         });
 
@@ -68,9 +75,12 @@ public class LoginForm extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(161, 161, 161)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jCheckBox1)
+                            .addComponent(jPasswordField1))))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -83,10 +93,12 @@ public class LoginForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox1)
+                .addGap(16, 16, 16)
                 .addComponent(jButton1)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -105,13 +117,79 @@ public class LoginForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        // AMBIL NILAI DARI INPUT USERNAME DAN PASSWORD
+        // CEK & VALIDASI APAKAH NILAINYS KOSONG ATAU TIDAK, RETURN ERROR (KALAU KOSONG)
+        // CEK INPUT USERNAME & PASSWORD MENYOCOKAN ANTARA INPUT DENGAN DATABASE
+        // VALIDASI ANTARA USERNAME & PASSWORD APAKAH MATCH
+        // VALIDASI APAKAH PASSWORD BENAR ATAU SALAH
+        // CEK ROLE USER REDIRECT KE DASHBOARD SESUAI DENGAN ROLE/HAK_AKSES
+        
+        String username = jTextField1.getText().trim();
+        String inputPassword = new String(jPasswordField1.getPassword()).trim();
+
+        if (username.isEmpty() || inputPassword.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Username dan Password harus diisi.");
+            return;
+        }
+
+        if (inputPassword.length() < 6) {
+            JOptionPane.showMessageDialog(this, "Password minimal 6 karakter.");
+            return;
+        }
+
+        try {
+            Connection conn = DatabaseConnection.connect();
+
+            String sql = "SELECT password, hak_akses FROM users WHERE username = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                String dbHashedPassword = rs.getString("password");
+                String inputHashed = HashUtil.hashPassword(inputPassword);
+                String role = rs.getString("hak_akses");
+                 if (dbHashedPassword.equals(inputHashed)) {
+            JOptionPane.showMessageDialog(this, "Login berhasil sebagai " + role);
+
+            if ("Admin".equalsIgnoreCase(role)) {
+                new DashboardAdmin().setVisible(true);
+            } else if ("Pegawai".equalsIgnoreCase(role)) {
+                new DashboardPegawai().setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Peran tidak dikenali: " + role);
+            }
+                this.dispose(); // tutup form login
+            } else {
+                JOptionPane.showMessageDialog(this, "Password salah!");
+            }
+            } else {
+                JOptionPane.showMessageDialog(this, "Username tidak ditemukan!");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+
+
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    // CheckBox `Show Password`
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+        if (jCheckBox1.isSelected()) {
+            // Menampilkan password (mengubah echo char menjadi 0)
+            jPasswordField1.setEchoChar((char) 0);
+        } else {
+            // Menyembunyikan password kembali (mengubah echo char menjadi default '*')
+            jPasswordField1.setEchoChar('*');
+        }
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,10 +228,11 @@ public class LoginForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

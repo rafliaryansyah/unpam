@@ -119,8 +119,7 @@ public class FormUser extends javax.swing.JFrame {
 
         jLabel3.setText("Hak Akses");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "User" }));
-        jComboBox1.setSelectedIndex(-1);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Pegawai" }));
         jComboBox1.setToolTipText("");
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,7 +243,7 @@ public class FormUser extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = jTextField1.getText().trim();
         String rawPassword = jTextField2.getText().trim();
-        String password = DatabaseConnection.hashPassword(rawPassword);
+        String password = HashUtil.hashPassword(rawPassword);
         String hak_akses = (String) jComboBox1.getSelectedItem();
         
         System.out.println("Selected item: " + hak_akses);
