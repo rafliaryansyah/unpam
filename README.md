@@ -1,4 +1,6 @@
-## 📘 DIBUAT BERDASARKAN INSPIRASI
+## 📘 DOKUMEN TUGAS, DLL SELAMA KULIAH 
+
+TEKNIK INFORMATIKA - UNIVERSITAS PAMULANG
 
 Proyek ini dibuat karena pengen lebih serius dalam hal dokumentasi.  
 Inspirasinya datang dari repo GitHub ini:  
