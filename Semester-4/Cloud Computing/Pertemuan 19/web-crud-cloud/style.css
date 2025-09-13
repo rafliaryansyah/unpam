@@ -1,16 +1,16 @@
 body {
-    font-family: Arial;
+    font-family: 'Arial';
 }
 
 table {
-    width: 60%;
     border-collapse: collapse;
+    width: 60%;
 }
 
 th,
 td {
-    border: 1px solid #ddd;
     padding: 8px;
+    border: 1px solid #ddd;
     text-align: left;
 }
 

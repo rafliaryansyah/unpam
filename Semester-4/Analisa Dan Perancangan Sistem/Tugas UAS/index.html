@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Booking Online Bioskop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border: 2px solid black;
+            padding: 20px;
+        }
+
+        .title {
+            text-align: left;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .form-container {
+            display: inline-block;
+            border: 2px solid black;
+            margin: 10px;
+            padding: 15px;
+            background-color: #e8e8e8;
+            vertical-align: top;
+            min-width: 250px;
+        }
+
+        .form-header {
+            background-color: #0066cc;
+            color: white;
+            padding: 5px 10px;
+            margin: -15px -15px 15px -15px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .form-header .minimize {
+            float: right;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: inline-block;
+            width: 80px;
+            text-align: left;
+            margin-right: 10px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 150px;
+            padding: 5px;
+            border: 1px solid black;
+        }
+
+        .form-group textarea {
+            width: 200px;
+            height: 60px;
+            padding: 5px;
+            border: 1px solid black;
+            resize: none;
+        }
+
+        .btn {
+            background-color: #c0c0c0;
+            border: 2px outset #c0c0c0;
+            padding: 8px 15px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background-color: #b0b0b0;
+        }
+
+        .status-box {
+            background-color: white;
+            border: 1px solid black;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .connection-line {
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .arrow {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: flex-start;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">UI Aplikasi Booking Online Bioskop</div>
+
+        <div class="flex-container">
+            <!-- Login Form -->
+            <div class="form-container">
+                <div class="form-header">
+                    Login
+                    <span class="minimize">⊟ ✕</span>
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password">
+                </div>
+                <div style="text-align: center;">
+                    <button class="btn" onclick="login()">Login</button>
+                </div>
+            </div>
+
+            <!-- Pemilihan Film -->
+            <div class="form-container">
+                <div class="form-header">
+                    Pemilihan Film
+                    <span class="minimize">⊟ ✕</span>
+                </div>
+                <div class="form-group">
+                    <label>Film</label>
+                    <select id="film">
+                        <option value="">Pilih Film</option>
+                        <option value="spiderman">Spider-Man</option>
+                        <option value="avatar">Avatar</option>
+                        <option value="topgun">Top Gun</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Jadwal</label>
+                    <select id="jadwal">
+                        <option value="">Pilih Jadwal</option>
+                        <option value="10:00">10:00 WIB</option>
+                        <option value="13:00">13:00 WIB</option>
+                        <option value="16:00">16:00 WIB</option>
+                        <option value="19:00">19:00 WIB</option>
+                    </select>
+                </div>
+                <div style="text-align: center;">
+                    <button class="btn" onclick="pilihFilm()">Pilih Film</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow">«Valid»</div>
+
+        <div class="flex-container">
+            <!-- Logout -->
+            <div class="form-container">
+                <div class="form-header">
+                    LogOut
+                    <span class="minimize">⊟ ✕</span>
+                </div>
+                <div style="text-align: center; padding: 20px;">
+                    <button class="btn" onclick="logout()">LogOut</button>
+                </div>
+            </div>
+
+            <!-- Konfirmasi Booking -->
+            <div class="form-container">
+                <div class="form-header">
+                    Konfirmasi Booking
+                    <span class="minimize">⊟ ✕</span>
+                </div>
+                <div class="status-box">Sedang Memproses</div>
+                <div class="form-group">
+                    <label>Jumlah Tiket</label>
+                    <input type="number" id="jumlahTiket" min="1" max="10" value="1">
+                </div>
+                <div style="text-align: center;">
+                    <button class="btn" onclick="konfirmasiBooking()">Konfirmasi Booking</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow">«Valid»</div>
+
+        <!-- Status Booking -->
+        <div class="form-container" style="width: 300px;">
+            <div class="form-header">
+                Status Booking
+                <span class="minimize">⊟ ✕</span>
+            </div>
+            <div class="status-box">Booking Berhasil</div>
+            <div class="form-group">
+                <label>Kode Booking</label>
+                <input type="text" id="kodeBooking" readonly value="BK001234">
+            </div>
+            <div style="text-align: center;">
+                <button class="btn" onclick="cetakTiket()">Cetak Tiket</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username && password) {
+                alert('Login berhasil! Selamat datang, ' + username);
+            } else {
+                alert('Mohon isi username dan password!');
+            }
+        }
+
+        function pilihFilm() {
+            const film = document.getElementById('film').value;
+            const jadwal = document.getElementById('jadwal').value;
+
+            if (film && jadwal) {
+                alert('Film "' + film + '" pada jadwal ' + jadwal + ' telah dipilih!');
+            } else {
+                alert('Mohon pilih film dan jadwal!');
+            }
+        }
+
+        function konfirmasiBooking() {
+            const jumlahTiket = document.getElementById('jumlahTiket').value;
+            const film = document.getElementById('film').value;
+
+            if (film && jumlahTiket) {
+                alert('Booking ' + jumlahTiket + ' tiket untuk film "' + film + '" sedang diproses...');
+                // Generate kode booking random
+                const kodeBooking = 'BK' + Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+                document.getElementById('kodeBooking').value = kodeBooking;
+            } else {
+                alert('Mohon pilih film terlebih dahulu!');
+            }
+        }
+
+        function cetakTiket() {
+            const kodeBooking = document.getElementById('kodeBooking').value;
+            if (kodeBooking) {
+                alert('Tiket dengan kode ' + kodeBooking + ' siap dicetak!');
+            }
+        }
+
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin logout?')) {
+                alert('Logout berhasil!');
+                // Reset form
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+                document.getElementById('film').value = '';
+                document.getElementById('jadwal').value = '';
+                document.getElementById('jumlahTiket').value = '1';
+                document.getElementById('kodeBooking').value = '';
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -9,16 +9,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Dosen: OCTAVIANA ANUGRAH ADE PURNAMA S.Kom., M.Kom.</h2>
-    <h2>Mata Kuliah: CLOUD COMPUTING</h2>
     <h1>Daftar Mahasiswa</h1>
-    <h4>Mahasiswa: M. RAFLI ARYANSYAH - 231011401531</h4>
-    <a href="tambah.php" class="add-button">+ Tambah Data Mahasiswa</a>
+    <a href="tambah.php">+ Tambah Data Mahasiswa</a>
     <table>
         <tr>
             <th>No</th>
             <th>Nama</th>
-            <th>NIM</th>
+            <th>Email</th>
+            <th>No HP</th>
             <th>Aksi</th>
         </tr>
         <?php
@@ -29,11 +27,9 @@
             echo "<tr>";
             echo "<td>" . $no++ . "</td>";
             echo "<td>" . $row["nama"] . "</td>";
-            echo "<td>" . $row["nim"] . "</td>";
-            echo "<td>
-                    <a href='edit.php?id=" . $row["id"] . "'>Edit</a> 
-                    <a href='hapus.php?id=" . $row["id"] . "' class='delete-link' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\")'>Hapus</a>
-                  </td>";
+            echo "<td>" . $row["email"] . "</td>";
+            echo "<td>" . $row["no_hp"] . "</td>";
+            echo "<td><a href='edit.php?id=" . $row["id"] . "'>Edit</a> | <a href='hapus.php?id=" . $row["id"] . "'>Hapus</a></td>";
             echo "</tr>";
         }
         $conn->close();

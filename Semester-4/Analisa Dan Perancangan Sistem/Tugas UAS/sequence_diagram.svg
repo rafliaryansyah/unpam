@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .lifeline { stroke: #333; stroke-width: 2; stroke-dasharray: 5,5; }
+      .actor-box { fill: #e6f3ff; stroke: #333; stroke-width: 2; }
+      .message { stroke: #333; stroke-width: 2; }
+      .message-text { font-family: Arial, sans-serif; font-size: 12px; fill: #333; }
+      .return-message { stroke: #666; stroke-width: 1; stroke-dasharray: 3,3; }
+      .title { font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; fill: #333; text-anchor: middle; }
+      .actor-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #333; text-anchor: middle; }
+    </style>
+    
+    <!-- Arrow markers -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+            refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+    <marker id="arrowhead-return" markerWidth="10" markerHeight="7" 
+            refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="400" y="25" class="title">Sequence Diagram - Sistem Booking Bioskop</text>
+  
+  <!-- Actors -->
+  <rect x="100" y="50" width="120" height="40" class="actor-box"/>
+  <text x="160" y="75" class="actor-label">User/Customer</text>
+  
+  <rect x="580" y="50" width="120" height="40" class="actor-box"/>
+  <text x="640" y="75" class="actor-label">Sistem Booking</text>
+  
+  <!-- Lifelines -->
+  <line x1="160" y1="90" x2="160" y2="550" class="lifeline"/>
+  <line x1="640" y1="90" x2="640" y2="550" class="lifeline"/>
+  
+  <!-- Messages -->
+  <!-- 1. Buka Aplikasi -->
+  <line x1="160" y1="110" x2="640" y2="110" class="message" marker-end="url(#arrowhead)"/>
+  <text x="400" y="105" class="message-text" text-anchor="middle">1. Buka Aplikasi Booking</text>
+  
+  <!-- 2. Login -->
+  <line x1="160" y1="140" x2="640" y2="140" class="message" marker-end="url(#arrowhead)"/>
+  <text x="400" y="135" class="message-text" text-anchor="middle">2. Login Akun</text>
+  
+  <line x1="640" y1="160" x2="160" y2="160" class="return-message" marker-end="url(#arrowhead-return)"/>
+  <text x="400" y="155" class="message-text" text-anchor="middle">Verifikasi Login</text>
+  
+  <!-- 3. Lihat Daftar Film -->
+  <line x1="160" y1="190" x2="640" y2="190" class="message" marker-end="url(#arrowhead)"/>
+  <text x="400" y="185" class="message-text" text-anchor="middle">3. Lihat Daftar Film</text>
+  
+  <line x1="640" y1="210" x2="160" y2="210" class="return-message" marker-end="url(#arrowhead-return)"/>
+  <text x="400" y="205" class="message-text" text-anchor="middle">Tampilkan Film</text>
+  
+  <!-- 4. Pilih Film -->
+  <line x1="160" y1="240" x2="640" y2="240" class="message" marker-end="url(#arrowhead)"/>
+  <text x="400" y="235" class="message-text" text-anchor="middle">4. Pilih Film</text>
+  
+  <!-- 5. Pilih Bioskop & Jadwal -->
+  <line x1="160" y1="270" x2="640" y2="270" class="message" marker-end="url(#arrowhead)"/>
+  <text x="400" y="265" class="message-text" text-anchor="middle">5. Pilih Bioskop & Jadwal</text>
+  
+  <line x1="640" y1="290" x2="160" y2="290" class="return-message" marker-end="url(#arrowhead-return)"/>
+  <text x="400" y="285" class="message-text" text-anchor="middle">Tampilkan Jadwal</text>
+  
+  <!-- 6. Pilih Kursi -->
+  <line x1="160" y1="320" x2="640" y2="320" class="message" marker-end="url(#arrowhead)"/>
+  <text x="400" y="315" class="message-text" text-anchor="middle">6. Pilih Kursi</text>
+  
+  <line x1="640" y1="340" x2="160" y2="340" class="return-message" marker-end="url(#arrowhead-return)"/>
+  <text x="400" y="335" class="message-text" text-anchor="middle">Tampilkan Kursi</text>
+  
+  <!-- 7. Isi Data Pembayaran -->
+  <line x1="160" y1="370" x2="640" y2="370" class="message" marker-end="url(#arrowhead)"/>
+  <text x="400" y="365" class="message-text" text-anchor="middle">7. Isi Data Pembayaran</text>
+  
+  <!-- 8. Konfirmasi Pembayaran -->
+  <line x1="160" y1="400" x2="640" y2="400" class="message" marker-end="url(#arrowhead)"/>
+  <text x="400" y="395" class="message-text" text-anchor="middle">8. Konfirmasi Pembayaran</text>
+  
+  <line x1="640" y1="420" x2="160" y2="420" class="return-message" marker-end="url(#arrowhead-return)"/>
+  <text x="400" y="415" class="message-text" text-anchor="middle">Proses Pembayaran</text>
+  
+  <!-- 9. Generate E-Ticket -->
+  <line x1="640" y1="450" x2="160" y2="450" class="return-message" marker-end="url(#arrowhead-return)"/>
+  <text x="400" y="445" class="message-text" text-anchor="middle">9. Generate E-Ticket</text>
+  
+  <!-- 10. Download E-Ticket -->
+  <line x1="160" y1="480" x2="640" y2="480" class="message" marker-end="url(#arrowhead)"/>
+  <text x="400" y="475" class="message-text" text-anchor="middle">10. Download E-Ticket</text>
+  
+  <line x1="640" y1="500" x2="160" y2="500" class="return-message" marker-end="url(#arrowhead-return)"/>
+  <text x="400" y="495" class="message-text" text-anchor="middle">Kirim Konfirmasi</text>
+</svg> 

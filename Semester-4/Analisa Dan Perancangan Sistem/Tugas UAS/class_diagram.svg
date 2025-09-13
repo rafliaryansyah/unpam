@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .class-box { fill: #f0f8ff; stroke: #333; stroke-width: 2; }
+      .class-header { fill: #add8e6; stroke: #333; stroke-width: 2; }
+      .class-name { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #000; text-anchor: middle; }
+      .attribute { font-family: Arial, sans-serif; font-size: 11px; fill: #000; }
+      .method { font-family: Arial, sans-serif; font-size: 11px; fill: #000; }
+      .separator { stroke: #333; stroke-width: 1; }
+      .association { stroke: #333; stroke-width: 2; }
+      .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #333; text-anchor: middle; }
+      .multiplicity { font-family: Arial, sans-serif; font-size: 10px; fill: #666; }
+    </style>
+    
+    <!-- Arrow markers -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+            refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+    <marker id="diamond" markerWidth="12" markerHeight="8" 
+            refX="12" refY="4" orient="auto">
+      <polygon points="0 4, 6 0, 12 4, 6 8" fill="white" stroke="#333" stroke-width="1"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="500" y="25" class="title">Class Diagram - Sistem Booking Bioskop</text>
+  
+  <!-- User Class -->
+  <rect x="50" y="60" width="160" height="120" class="class-box"/>
+  <rect x="50" y="60" width="160" height="25" class="class-header"/>
+  <text x="130" y="78" class="class-name">User</text>
+  <line x1="50" y1="85" x2="210" y2="85" class="separator"/>
+  
+  <text x="55" y="100" class="attribute">- userId: int</text>
+  <text x="55" y="115" class="attribute">- username: string</text>
+  <text x="55" y="130" class="attribute">- email: string</text>
+  <text x="55" y="145" class="attribute">- password: string</text>
+  
+  <line x1="50" y1="150" x2="210" y2="150" class="separator"/>
+  <text x="55" y="165" class="method">+ login(): boolean</text>
+  <text x="55" y="175" class="method">+ logout(): void</text>
+  
+  <!-- Film Class -->
+  <rect x="300" y="60" width="160" height="140" class="class-box"/>
+  <rect x="300" y="60" width="160" height="25" class="class-header"/>
+  <text x="380" y="78" class="class-name">Film</text>
+  <line x1="300" y1="85" x2="460" y2="85" class="separator"/>
+  
+  <text x="305" y="100" class="attribute">- filmId: int</text>
+  <text x="305" y="115" class="attribute">- title: string</text>
+  <text x="305" y="130" class="attribute">- genre: string</text>
+  <text x="305" y="145" class="attribute">- duration: int</text>
+  <text x="305" y="160" class="attribute">- rating: string</text>
+  
+  <line x1="300" y1="165" x2="460" y2="165" class="separator"/>
+  <text x="305" y="180" class="method">+ getFilmInfo(): string</text>
+  <text x="305" y="195" class="method">+ getSchedules(): List</text>
+  
+  <!-- Cinema Class -->
+  <rect x="550" y="60" width="160" height="140" class="class-box"/>
+  <rect x="550" y="60" width="160" height="25" class="class-header"/>
+  <text x="630" y="78" class="class-name">Cinema</text>
+  <line x1="550" y1="85" x2="710" y2="85" class="separator"/>
+  
+  <text x="555" y="100" class="attribute">- cinemaId: int</text>
+  <text x="555" y="115" class="attribute">- name: string</text>
+  <text x="555" y="130" class="attribute">- location: string</text>
+  <text x="555" y="145" class="attribute">- totalTheaters: int</text>
+  
+  <line x1="550" y1="150" x2="710" y2="150" class="separator"/>
+  <text x="555" y="165" class="method">+ getCinemaInfo(): string</text>
+  <text x="555" y="180" class="method">+ getTheaters(): List</text>
+  <text x="555" y="195" class="method">+ getSchedules(): List</text>
+  
+  <!-- Schedule Class -->
+  <rect x="300" y="250" width="160" height="120" class="class-box"/>
+  <rect x="300" y="250" width="160" height="25" class="class-header"/>
+  <text x="380" y="268" class="class-name">Schedule</text>
+  <line x1="300" y1="275" x2="460" y2="275" class="separator"/>
+  
+  <text x="305" y="290" class="attribute">- scheduleId: int</text>
+  <text x="305" y="305" class="attribute">- filmId: int</text>
+  <text x="305" y="320" class="attribute">- cinemaId: int</text>
+  <text x="305" y="335" class="attribute">- showTime: datetime</text>
+  
+  <line x1="300" y1="340" x2="460" y2="340" class="separator"/>
+  <text x="305" y="355" class="method">+ getAvailableSeats(): List</text>
+  <text x="305" y="365" class="method">+ bookSeat(): boolean</text>
+  
+  <!-- Seat Class -->
+  <rect x="50" y="250" width="160" height="120" class="class-box"/>
+  <rect x="50" y="250" width="160" height="25" class="class-header"/>
+  <text x="130" y="268" class="class-name">Seat</text>
+  <line x1="50" y1="275" x2="210" y2="275" class="separator"/>
+  
+  <text x="55" y="290" class="attribute">- seatId: int</text>
+  <text x="55" y="305" class="attribute">- seatNumber: string</text>
+  <text x="55" y="320" class="attribute">- isAvailable: boolean</text>
+  <text x="55" y="335" class="attribute">- price: double</text>
+  
+  <line x1="50" y1="340" x2="210" y2="340" class="separator"/>
+  <text x="55" y="355" class="method">+ reserve(): void</text>
+  <text x="55" y="365" class="method">+ release(): void</text>
+  
+  <!-- Payment Class -->
+  <rect x="550" y="250" width="160" height="140" class="class-box"/>
+  <rect x="550" y="250" width="160" height="25" class="class-header"/>
+  <text x="630" y="268" class="class-name">Payment</text>
+  <line x1="550" y1="275" x2="710" y2="275" class="separator"/>
+  
+  <text x="555" y="290" class="attribute">- paymentId: int</text>
+  <text x="555" y="305" class="attribute">- amount: double</text>
+  <text x="555" y="320" class="attribute">- paymentMethod: string</text>
+  <text x="555" y="335" class="attribute">- status: string</text>
+  <text x="555" y="350" class="attribute">- paymentDate: datetime</text>
+  
+  <line x1="550" y1="355" x2="710" y2="355" class="separator"/>
+  <text x="555" y="370" class="method">+ processPayment(): boolean</text>
+  <text x="555" y="385" class="method">+ validatePayment(): boolean</text>
+  
+  <!-- Ticket Class -->
+  <rect x="300" y="450" width="160" height="140" class="class-box"/>
+  <rect x="300" y="450" width="160" height="25" class="class-header"/>
+  <text x="380" y="468" class="class-name">Ticket</text>
+  <line x1="300" y1="475" x2="460" y2="475" class="separator"/>
+  
+  <text x="305" y="490" class="attribute">- ticketId: int</text>
+  <text x="305" y="505" class="attribute">- userId: int</text>
+  <text x="305" y="520" class="attribute">- scheduleId: int</text>
+  <text x="305" y="535" class="attribute">- seatId: int</text>
+  <text x="305" y="550" class="attribute">- bookingDate: datetime</text>
+  
+  <line x1="300" y1="555" x2="460" y2="555" class="separator"/>
+  <text x="305" y="570" class="method">+ generateTicket(): string</text>
+  <text x="305" y="585" class="method">+ downloadTicket(): void</text>
+  
+  <!-- Booking Class -->
+  <rect x="750" y="400" width="160" height="140" class="class-box"/>
+  <rect x="750" y="400" width="160" height="25" class="class-header"/>
+  <text x="830" y="418" class="class-name">Booking</text>
+  <line x1="750" y1="425" x2="910" y2="425" class="separator"/>
+  
+  <text x="755" y="440" class="attribute">- bookingId: int</text>
+  <text x="755" y="455" class="attribute">- userId: int</text>
+  <text x="755" y="470" class="attribute">- scheduleId: int</text>
+  <text x="755" y="485" class="attribute">- totalAmount: double</text>
+  <text x="755" y="500" class="attribute">- bookingStatus: string</text>
+  
+  <line x1="750" y1="505" x2="910" y2="505" class="separator"/>
+  <text x="755" y="520" class="method">+ createBooking(): boolean</text>
+  <text x="755" y="535" class="method">+ cancelBooking(): boolean</text>
+  
+  <!-- Associations -->
+  
+  <!-- User to Booking (1 to many) -->
+  <line x1="210" y1="120" x2="750" y2="470" class="association"/>
+  <text x="220" y="135" class="multiplicity">1</text>
+  <text x="730" y="485" class="multiplicity">*</text>
+  
+  <!-- Film to Schedule (1 to many) -->
+  <line x1="380" y1="200" x2="380" y2="250" class="association"/>
+  <text x="385" y="215" class="multiplicity">1</text>
+  <text x="385" y="245" class="multiplicity">*</text>
+  
+  <!-- Cinema to Schedule (1 to many) -->
+  <line x1="550" y1="180" x2="460" y2="300" class="association"/>
+  <text x="530" y="195" class="multiplicity">1</text>
+  <text x="470" y="315" class="multiplicity">*</text>
+  
+  <!-- Schedule to Seat (1 to many) -->
+  <line x1="300" y1="310" x2="210" y2="310" class="association"/>
+  <text x="280" y="325" class="multiplicity">1</text>
+  <text x="220" y="325" class="multiplicity">*</text>
+  
+  <!-- Booking to Payment (1 to 1) -->
+  <line x1="750" y1="450" x2="710" y2="320" class="association"/>
+  <text x="730" y="435" class="multiplicity">1</text>
+  <text x="720" y="335" class="multiplicity">1</text>
+  
+  <!-- Booking to Ticket (1 to many) -->
+  <line x1="750" y1="500" x2="460" y2="520" class="association"/>
+  <text x="730" y="515" class="multiplicity">1</text>
+  <text x="470" y="535" class="multiplicity">*</text>
+  
+  <!-- Schedule to Booking (1 to many) -->
+  <line x1="460" y1="320" x2="750" y2="450" class="association"/>
+  <text x="470" y="335" class="multiplicity">1</text>
+  <text x="730" y="465" class="multiplicity">*</text>
+  
+</svg> 
