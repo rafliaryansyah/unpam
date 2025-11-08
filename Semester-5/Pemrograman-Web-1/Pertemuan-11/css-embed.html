@@ -1,0 +1,148 @@
+<html>
+
+<!-- apa gunannya CSS? css atau cascading style sheets berguna untuk mengatur tampilan dan gaya dari elemen-elemen di halaman web. dengan css, kita bisa mengubah warna, ukuran teks, jarak antar elemen, posisi, latar belakang, hingga efek animasi tanpa mengubah struktur html-nya. fungsi utamanya adalah memisahkan tampilan (style) dari konten (struktur html), sehingga kode lebih rapi, mudah dikelola, dan tampilan web bisa konsisten di banyak halaman. css juga memungkinkan desain web responsif agar tampak bagus di berbagai ukuran layar seperti hp, tablet, dan laptop. -->
+
+<head>
+    <title>Contoh CSS Embed</title>
+    <style>
+        body {
+            color: #80c0c0;
+            background: black;
+        }
+
+        a:link {
+            color: #ff8080;
+        }
+
+        a:visited {
+            color: #ff0000;
+        }
+
+        a:active {
+            color: #a05050;
+        }
+
+        a.case1:link {
+            background: green;
+        }
+
+        p:first-line {
+            margin-left: 25px;
+        }
+
+        div.foo:first-line {
+            font-weight: bold;
+            margin-left: 30px;
+        }
+
+        div:first-letter {
+            font-size: x-large;
+            color: #ffffff;
+        }
+
+        ul ul li {
+            font-size: x-large;
+            font-decoration: italic;
+        }
+
+        h2 em {
+            font-weight: 900;
+        }
+
+        h2.ex1 {
+            color: green;
+            /* This type of heading MUST be Green and Large! */
+            line-height: 50px;
+            font-size: 40px;
+        }
+
+        .funkyclass {
+            font: 36pt/40pt courier;
+            font-variant: small-caps;
+            border: thick dashed blue;
+        }
+
+        #tagid1 {
+            padding: 20px;
+            border: 20px groove #ffffff;
+        }
+
+        .class1,
+        #tagid2 {
+            font-family: "comic sans ms", fantasy;
+            color: rgb(100%, 100%, 0%);
+        }
+
+        h1,
+        h2,
+        div.class5,
+        blockquote {
+            background: #000080;
+        }
+
+        p.special {
+            font: 12pt/14pt sans-serif;
+            margin: 5px 0px 2px 25px;
+            border: medium dashed #ff0000;
+            background: white url(http://www.foo.com/image.gif) repeat-x fixed top right;
+        }
+
+        blockquote {
+            margin-left: 2cm;
+            color: #00ff00;
+        }
+
+        .part1 {
+            font-size: xx-large;
+            color: #808000;
+        }
+
+        h5 {
+            font-size: xx-small !important;
+            color: red !important;
+        }
+
+        .heading-bawah {
+            background-color: red;
+            padding: 5px;
+            color: cyan;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 CLASS="funkyclass" ALIGN="center">Welcome to my home page!</h1> Hai yang disana! Jika Anda membaca ini, maka
+    Anda telah menemukan halaman rumah saya! Selamat! Saya tahu mungkin sulit menemukan halaman saya, tetapi saya yakin
+    Anda merasa beruntung sekarang. Sekarang Anda di sini, silakan lihat halaman tautan saya <a
+        HREF="http://www.mysite.com/coolsites.html">Website Sehat</a> or sign my <a
+        HREF="http://www.mysite.com/guestbook.html">Buku Tamu</a>
+    </p>
+    <div CLASS="foo"> Puisi Indah <br> tersedia jika Anda benar-benar bosan. Mengapa tidak mencobanya? </div>
+    <h2 CLASS="ex1"> Puisi terbaikku <em>Tidak pernah</em> dituliskan </h2>
+    <ul>
+        <li>'Dahulu ada seseorang dari Negeri Awan - <span CLASS="class1">Nama Lain</span>
+        </li>
+        <li>'Dingin' <span CLASS="class1">Gunung Susongko</span>
+        </li>
+        <li>dan semua waktu saya : <ul>
+                <li> 'Kebiasaan baik' - <span CLASS="class1">Menjadi baik!</span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <blockquote>Menuliskan surat untukku <span ID="tagid2">&quot;H&quot;</span> dan <span ID="tagid1">Muhamamd Rafli
+            Aryansyah</span>
+    </blockquote>
+    <div CLASS="class5"> Ketika Anda selesai melihat-lihat karya agung ini, saya mendorong Anda untuk mengunjungi
+        sponsor saya yang bangga </div>
+    <p CLASS="special">
+        <span CLASS="funkyclass">IKLAN:</span> Beli satu produk terbaru mendapat tambahan gratis <a
+            HREF="http://www.google.com">Halaman rumah </a> tanpa penundaan! Mengapa? Karena umur penyimpanan hanya 8
+        jam kecuali didinginkan. Kita tahu itu menyulitkan untuk menjelajah, tetapi sering meningkatkan ke versi terbaru
+        dan terhebat.
+    </p>
+    <h4 class="heading-bawah">Semua ini adalah contoh penggunaan CSS, Anda boleh melakukan uji coba <a
+            HREF="http://www.mysite.com/selfdestruct.html" CLASS="case1">link mysite</a> dalam 5 detik </h4>
+</body>
+
+</html>
