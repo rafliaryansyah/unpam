@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <title>My Holiday — Travel Table</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <div class="topbar">
+        <div class="topbar-inner wrapper">
+            <div class="brand">
+                <div class="brand-title">My Holiday</div>
+                <div class="brand-sub">All About My Trips</div>
+            </div>
+            <form class="search" onsubmit="return doSearch(event)">
+                <input id="q" type="text" placeholder="Search..." />
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="wrapper page">
+        <aside class="sidebar">
+            <ul class="menu">
+                <li><a href="index.html">› Home</a></li>
+                <li><a href="bullets.html">› List (Bullet Numbering)</a></li>
+                <li><a class="active" href="table.html">› Table</a></li>
+                <li><a href="frameset.html">› Frame (Frameset)</a></li>
+                <li><a href="iframe.html">› iFrame</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h1>Tabel Rencana Perjalanan</h1>
+            <div class="table-wrap">
+                <table class="retro">
+                    <thead>
+                        <tr>
+                            <th>Hari</th>
+                            <th>Kota/Tempat</th>
+                            <th>Kegiatan</th>
+                            <th>Budget (Rp)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Lombok</td>
+                            <td>Snorkeling &amp; sunset</td>
+                            <td>750.000</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Gili T</td>
+                            <td>Island hopping</td>
+                            <td>600.000</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Bromo</td>
+                            <td>Sunrise &amp; jeep tour</td>
+                            <td>900.000</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Yogyakarta</td>
+                            <td>Kuliner &amp; museum</td>
+                            <td>500.000</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="right">Perkiraan total</td>
+                            <td><strong>2.750.000</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <p><a href="index.html" class="btn">← Kembali ke Home</a></p>
+        </main>
+
+        <aside class="rightbar">
+            <h3 class="rightbar-title">Catatan</h3>
+            <div class="card">
+                <p>Harga dummy — silakan sesuaikan.</p>
+            </div>
+        </aside>
+        <div class="clear"></div>
+    </div>
+
+    <footer class="footer">
+        <div class="wrapper">© 2025 My Holiday</div>
+    </footer>
+</body>
+
+</html>

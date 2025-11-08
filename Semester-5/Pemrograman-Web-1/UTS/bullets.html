@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <title>My Holiday — List (Bullet Numbering)</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <div class="topbar">
+        <div class="topbar-inner wrapper">
+            <div class="brand">
+                <div class="brand-title">My Holiday</div>
+                <div class="brand-sub">All About My Trips</div>
+            </div>
+            <form class="search" onsubmit="return doSearch(event)">
+                <input id="q" type="text" placeholder="Search..." />
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="wrapper page">
+        <aside class="sidebar">
+            <ul class="menu">
+                <li><a href="index.html">› Home</a></li>
+                <li><a class="active" href="bullets.html">› List (Bullet Numbering)</a></li>
+                <li><a href="table.html">› Table</a></li>
+                <li><a href="frameset.html">› Frame (Frameset)</a></li>
+                <li><a href="iframe.html">› iFrame</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h1>Checklist Persiapan Liburan</h1>
+            <ol class="fancy-list">
+                <li>Passport &amp; identitas</li>
+                <li>Tiket &amp; booking penginapan</li>
+                <li>Obat pribadi &amp; P3K</li>
+                <li>Power bank, charger, adaptor</li>
+                <li>Kamera &amp; kartu memori</li>
+                <li>Uang tunai &amp; e-wallet</li>
+                <li>Itinerary &amp; peta</li>
+            </ol>
+            <p><a href="index.html" class="btn">← Kembali ke Home</a></p>
+        </main>
+
+        <aside class="rightbar">
+            <h3 class="rightbar-title">Quick Tips</h3>
+            <div class="card">
+                <p>Scan dokumen penting ke PDF &amp; simpan di cloud.</p>
+            </div>
+            <div class="card">
+                <p>Siapkan kantong waterproof kecil untuk HP &amp; kartu.</p>
+            </div>
+        </aside>
+        <div class="clear"></div>
+    </div>
+
+    <footer class="footer">
+        <div class="wrapper">© 2025 My Holiday</div>
+    </footer>
+</body>
+
+</html>

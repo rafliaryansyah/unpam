@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <title>My Holiday — iFrame</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <div class="topbar">
+        <div class="topbar-inner wrapper">
+            <div class="brand">
+                <div class="brand-title">My Holiday</div>
+                <div class="brand-sub">All About My Trips</div>
+            </div>
+            <form class="search" onsubmit="return doSearch(event)">
+                <input id="q" type="text" placeholder="Search..." />
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="wrapper page">
+        <aside class="sidebar">
+            <ul class="menu">
+                <li><a href="index.html">› Home</a></li>
+                <li><a href="bullets.html">› List (Bullet Numbering)</a></li>
+                <li><a href="table.html">› Table</a></li>
+                <li><a href="frameset.html">› Frame (Frameset)</a></li>
+                <li><a class="active" href="iframe.html">› iFrame</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h1>Contoh iFrame</h1>
+            <p>Berikut contoh menampilkan halaman lain di dalam halaman ini.</p>
+
+            <!-- iFrame internal (pasti aman ditampilkan) -->
+            <div class="block">
+                <h2>iFrame ke Halaman Tabel (internal)</h2>
+                <iframe src="table.html" title="Tabel internal" class="demo-iframe"></iframe>
+            </div>
+
+            <!-- iFrame eksternal: Wikipedia (umumnya mengizinkan embedding) -->
+            <div class="block">
+                <h2>iFrame ke Wikipedia.org (eksternal)</h2>
+                <iframe src="https://www.wikipedia.org" title="Wikipedia" class="demo-iframe"></iframe>
+            </div>
+
+            <p><a href="index.html" class="btn">← Kembali ke Home</a></p>
+        </main>
+
+        <aside class="rightbar">
+            <h3 class="rightbar-title">Keterangan</h3>
+            <div class="card">
+                <p>Jika situs menolak di-embed (X-Frame-Options), gunakan iFrame internal.</p>
+            </div>
+        </aside>
+        <div class="clear"></div>
+    </div>
+
+    <footer class="footer">
+        <div class="wrapper">© 2025 My Holiday</div>
+    </footer>
+</body>
+
+</html>

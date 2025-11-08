@@ -25,6 +25,7 @@ class Order extends Model
         'total_price',
         'user_id',
         'payment_method_id',
+        'membership_id',
     ];
 
     public function orderDetails()
@@ -35,6 +36,16 @@ class Order extends Model
     public function paymentMethod()
     {
         return $this->belongsTo(PaymentMethod::class);
+    }
+
+    public function membership()
+    {
+        return $this->belongsTo(Membership::class);
+    }
+
+    public function invoice()
+    {
+        return $this->hasOne(Invoice::class);
     }
 
 }

@@ -1,0 +1,38 @@
+modelType: "landmark-mlp"
+classes:
+  - halo
+  - iya
+  - tidak
+  - tolong
+  - terima_kasih
+  - baik
+debounceFrames: 5
+minConfidence: 0.7
+tts:
+  provider: "gtts"
+  language: "id"
+video:
+  width: 640
+  height: 480
+  deviceIndex: 0
+data:
+  rawDir: "data/raw"
+  processedDir: "data/processed"
+  split:
+    train: 0.7
+    val: 0.15
+    test: 0.15
+model:
+  cnn:
+    imgSize: 128
+    epochs: 30
+    batchSize: 32
+    learningRate: 0.001
+  mlp:
+    hiddenLayers:
+      - 128
+      - 64
+    learningRate: 0.001
+    maxIter: 500
+randomSeed: 42
+saveArtifacts: true

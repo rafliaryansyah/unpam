@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <title>My Holiday — All About My Trips</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <!-- Top Banner -->
+    <div class="topbar">
+        <div class="topbar-inner wrapper">
+            <div class="brand">
+                <div class="brand-title">My Holiday</div>
+                <div class="brand-sub">All About My Trips</div>
+            </div>
+            <form class="search" onsubmit="return doSearch(event)">
+                <label for="q" class="visually-hidden">Search</label>
+                <input id="q" type="text" placeholder="Search..." />
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="wrapper page">
+        <!-- Left Menu -->
+        <aside class="sidebar">
+            <ul class="menu">
+                <li><a href="#" onclick="alert('Demo only 🙂'); return false;">› Sign Out</a></li>
+                <li><a class="active" href="index.html">› Home</a></li>
+                <li><a href="bullets.html">› List (Bullet Numbering)</a></li>
+                <li><a href="table.html">› Table</a></li>
+                <li><a href="frameset.html">› Frame (Frameset)</a></li>
+                <li><a href="iframe.html">› iFrame</a></li>
+            </ul>
+
+            <div class="panel music">
+                <h3>Background Music</h3>
+                <p class="small">Klik tombol untuk play/pause musik latar.</p>
+                <button id="musicToggle" class="btn">Play Music</button>
+                <!-- Note: autoplay + muted agar lolos policy; tombol akan unmute -->
+                <audio id="bgm"
+                    src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_0b5a0c50b1.mp3?filename=relaxing-ambient-112199.mp3"
+                    autoplay loop muted></audio>
+            </div>
+        </aside>
+
+        <!-- Center Content -->
+        <main class="content">
+            <div class="date" id="today"></div>
+            <h1 class="welcome">WELCOME TO MY HOMEPAGE</h1>
+
+            <div class="hero">
+                <img src="https://picsum.photos/id/1069/760/330" alt="Pantai biru dan pulau kecil" />
+                <div class="hero-tag">Pantai Pulau Impian</div>
+            </div>
+
+            <p class="lead">
+                Indonesia dianugerahi keindahan alam dan budaya yang luar biasa. Halaman
+                ini mendokumentasikan liburan pribadi saya: pantai, pegunungan, kuliner,
+                dan momen unik sepanjang perjalanan.
+            </p>
+
+            <!-- Sample Video -->
+            <div class="block">
+                <h2>Cuplikan Liburan (Video)</h2>
+                <video width="100%" controls poster="https://picsum.photos/id/1015/800/450">
+                    <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+                        type="video/mp4" />
+                    Browser Anda tidak mendukung video HTML5.
+                </video>
+            </div>
+
+            <div class="block">
+                <h2>Catatan Singkat</h2>
+                <p>
+                    Lihat juga halaman lain: <a href="bullets.html">List bernomor</a>,
+                    <a href="table.html">Tabel rencana jalan</a>,
+                    <a href="frameset.html">Frame (nostalgia 2010-an)</a>,
+                    dan <a href="iframe.html">iFrame</a>.
+                </p>
+            </div>
+        </main>
+
+        <!-- Right Column -->
+        <aside class="rightbar">
+            <h3 class="rightbar-title">TEMPAT WISATA<br />REKOMENDASI KAMI</h3>
+
+            <div class="card">
+                <img src="https://picsum.photos/id/1016/380/220" alt="Gunung Bromo" />
+                <h4><a href="#" onclick="return false;">Gunung Bromo, Jawa Timur</a></h4>
+                <p>
+                    Gunung Bromo adalah salah satu gunung berapi paling terkenal di Indonesia.
+                    Terkenal dengan pemandangan matahari terbit yang spektakuler, lautan pasir
+                    yang luas, dan kawah aktif yang mengeluarkan asap putih. Tempat ini menjadi
+                    destinasi favorit para fotografer dan pecinta alam.
+                    <a href="#" onclick="return false;">Selengkapnya &gt;</a>
+                </p>
+            </div>
+
+            <div class="card">
+                <img src="https://picsum.photos/id/1011/380/220" alt="Pantai Belitung" />
+                <h4><a href="#" onclick="return false;">Pantai Belitung</a></h4>
+                <p>
+                    Belitung menawarkan pantai dengan air laut yang jernih kebiruan, pasir putih
+                    yang lembut, dan formasi batu granit raksasa yang unik. Pulau ini terkenal
+                    dengan keindahan alam bawah lautnya yang menakjubkan, cocok untuk snorkeling
+                    dan diving. Jangan lewatkan island hopping ke pulau-pulau kecil di sekitarnya.
+                    <a href="#" onclick="return false;">Selengkapnya &gt;</a>
+                </p>
+            </div>
+        </aside>
+        <div class="clear"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="wrapper">
+            © 2025 My Holiday • UTS • M RAFLI ARYANSYAH 231011401531 05TPLE005
+        </div>
+    </footer>
+</body>
+
+</html>

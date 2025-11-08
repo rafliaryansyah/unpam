@@ -7,6 +7,7 @@ use App\Http\Livewire\TotalPricePreview;
 use App\Models\Order;
 use App\Models\PaymentMethod;
 use App\Models\Product;
+use App\Models\Membership;
 use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Components\View;
@@ -23,7 +24,7 @@ class OrderResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
 
-    protected static ?string $navigationGroup = 'Shop';
+    protected static ?string $navigationGroup = 'Reports';
 
     protected static ?string $navigationLabel = 'Order';
 
@@ -33,8 +34,30 @@ class OrderResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Card::make([
-                    Forms\Components\TextInput::make('customer_name')
-                        ->label('Customer Name')
+                    Forms\Components\Select::make('membership_id')
+                        ->label('Customer (Membership)')
+                        ->options(Membership::all()->mapWithKeys(function ($membership) {
+                            return [$membership->id => "{$membership->full_name} - {$membership->phone_number}"];
+                        }))
+                        ->searchable()
+                        ->preload()
+                        ->createOptionForm([
+                            Forms\Components\TextInput::make('full_name')
+                                ->label('Full Name')
+                                ->required()
+                                ->maxLength(255),
+                            Forms\Components\TextInput::make('phone_number')
+                                ->label('Phone Number')
+                                ->required()
+                                ->maxLength(255),
+                            Forms\Components\TextInput::make('email')
+                                ->label('Email')
+                                ->email()
+                                ->maxLength(255),
+                        ])
+                        ->createOptionUsing(function (array $data): int {
+                            return Membership::create($data)->id;
+                        })
                         ->required(),
 
                     Forms\Components\Textarea::make('customer_address')
@@ -135,8 +158,14 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('customer_name')
-                    ->label('Customer Name'),
+                Tables\Columns\TextColumn::make('membership.full_name')
+                    ->label('Customer Name')
+                    ->searchable()
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('membership.phone_number')
+                    ->label('Phone Number')
+                    ->searchable(),
 
                 Tables\Columns\TextColumn::make('customer_address')
                     ->label('Customer Address'),
@@ -148,10 +177,62 @@ class OrderResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Created At')
                     ->dateTime(),
+
+                Tables\Columns\IconColumn::make('has_invoice')
+                    ->label('Invoice')
+                    ->boolean()
+                    ->getStateUsing(fn (Order $record): bool => $record->invoice !== null)
+                    ->trueIcon('heroicon-o-document-text')
+                    ->falseIcon('heroicon-o-minus')
+                    ->trueColor('success')
+                    ->falseColor('gray'),
             ])
             ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('generate_invoice')
+                    ->label('Generate Invoice')
+                    ->icon('heroicon-o-document-text')
+                    ->color('success')
+                    ->requiresConfirmation()
+                    ->action(function (Order $record) {
+                        // Check if invoice already exists
+                        if ($record->invoice) {
+                            throw new \Exception('Invoice already exists for this order.');
+                        }
+
+                        // Create invoice
+                        $invoice = \App\Models\Invoice::create([
+                            'invoice_number' => \App\Models\Invoice::generateInvoiceNumber(),
+                            'order_id' => $record->id,
+                            'user_id' => auth()->id(),
+                            'membership_id' => $record->membership_id,
+                            'subtotal' => $record->total_price,
+                            'tax_amount' => 0, // You can add tax calculation here
+                            'total_amount' => $record->total_price,
+                            'status' => 'pending',
+                        ]);
+
+                        \Filament\Notifications\Notification::make()
+                            ->title('Invoice Generated Successfully')
+                            ->body('Invoice ' . $invoice->invoice_number . ' has been created.')
+                            ->success()
+                            ->send();
+                    })
+                    ->visible(fn (Order $record): bool => !$record->invoice),
+                Tables\Actions\Action::make('view_invoice_pdf')
+                    ->label('View Invoice PDF')
+                    ->icon('heroicon-o-document-text')
+                    ->url(fn (Order $record): string => $record->invoice ? route('invoice.pdf', $record->invoice) : '#')
+                    ->openUrlInNewTab()
+                    ->visible(fn (Order $record): bool => $record->invoice !== null)
+                    ->color('info'),
+                Tables\Actions\Action::make('download_invoice_pdf')
+                    ->label('Download Invoice PDF')
+                    ->icon('heroicon-o-arrow-down-tray')
+                    ->url(fn (Order $record): string => $record->invoice ? route('invoice.download', $record->invoice) : '#')
+                    ->visible(fn (Order $record): bool => $record->invoice !== null)
+                    ->color('success'),
             ])
             ->defaultSort('created_at', 'desc')
             ->bulkActions([]);
